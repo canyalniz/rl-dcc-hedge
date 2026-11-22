@@ -1,0 +1,30 @@
+program: run_rl.py
+method: grid
+project: rl-dcc-hedge
+name: Sweep-SPY
+metric:
+  goal: minimize
+  name: eval/Annual Volatility
+parameters:
+  all_traj:
+    value: true
+  seed:
+    values: [1, 10, 42, 137]
+  train_only:
+    value: true
+  save_model:
+    value: true
+  
+  eval_metrics:
+    value: "Annual Volatility:min"
+  
+  cuda:
+    value: false
+  
+  reward_components:
+    values:
+      - "log_return:2.0,vol:0.22,alpha_penalty:0.05"
+      - "log_return:1.2,vol:0.22,alpha_penalty:0.05"
+      - "log_return:0.8,vol:0.22,alpha_penalty:0.05"
+      - "log_return:0.4,vol:0.22,alpha_penalty:0.05"
+      - "vol:0.22,alpha_penalty:0.05"
